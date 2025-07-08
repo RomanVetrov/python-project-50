@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import argparse
 
 def parse_args():
@@ -7,10 +8,20 @@ def parse_args():
     )
     parser.add_argument('first_file')
     parser.add_argument('second_file')
+
+    
+    parser.add_argument(
+        '-f', '--format',
+        help='set format of output'
+    )
+
     return parser.parse_args()
 
 def main():
-    parse_args()
+    args = parse_args()
+    print(f"First file: {args.first_file}")
+    print(f"Second file: {args.second_file}")
+    print(f"Output format: {args.format}")
 
 if __name__ == '__main__':
     main()
