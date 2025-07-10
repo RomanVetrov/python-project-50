@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import json
 import argparse
 
 def parse_args():
@@ -11,17 +12,45 @@ def parse_args():
 
     
     parser.add_argument(
-        '-f', '--format',
-        help='set format of output'
-    )
+    '-f', '--format',
+    choices=['plain', 'json'],
+    default='plain',  # по умолчанию
+    help='set format of output'
+)
 
     return parser.parse_args()
 
+def read_file(file_path):
+    with open(file_path, 'r') as file:
+        return json.load(file)
+
+def generate_diff(file1_data, file2_data):
+    diff = []
+
+    keys = sorted(set(file1_data.keys()).union(set(file2_data.keys())))
+
+    for key in keys:
+        if key not in file2_data:
+            diff.append(f"- {key}: {file1_data[key]}")
+
+        elif key not in file1_data:
+            diff.append(f"+ {key}: {file2_data[key]}")
+
+        elif file1_data[key] != file2_data[key]:
+            diff.append(f"- {key}: {file1_data[key]}")
+            diff.append(f"+ {key}: {file2_data[key]}")
+    
+    return "\n".join(diff)
+
 def main():
     args = parse_args()
-    print(f"First file: {args.first_file}")
-    print(f"Second file: {args.second_file}")
-    print(f"Output format: {args.format}")
+
+    data1 = read_file(args.first_file)
+    data2 = read_file(args.second_file)
+
+    diff = generate_diff(data1, data2)
+
+    print(diff)
 
 if __name__ == '__main__':
     main()
