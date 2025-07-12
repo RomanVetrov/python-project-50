@@ -20,7 +20,7 @@ jobs:
         run: |
           pip install uv
           make install
-          uv run pip install ruff
+          uv run pip install ruff pytest pytest-cov
 
       - name: Run lint and tests
         run: |
