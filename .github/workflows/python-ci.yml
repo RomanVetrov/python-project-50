@@ -1,4 +1,4 @@
-name: Python CI
+name: CI
 
 on:
   push:
@@ -11,37 +11,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Чекаутим весь репозиторий
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2) Ставим Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      # 3) Устанавливаем dev-зависимости
-      - name: Install dependencies
-        run: |
-          pip install -e .[dev]
+      - name: Install deps
+        run: pip install -e .[dev]
 
-      # 4) Запускаем линт и тесты
-      - name: Run lint and tests
-        run: make check
+      - name: Lint
+        run: make lint
 
-      # 5) Собираем отчёт покрытия
-      - name: Run test coverage
+      - name: Test
+        run: make test
+
+      - name: Coverage
         run: make coverage
 
-      # 6) Анализируем SonarCloud при помощи официального action
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@v1
         with:
           organization: ${{ secrets.SONAR_ORGANIZATION }}
           projectKey:    ${{ secrets.SONAR_PROJECT_KEY }}
           token:         ${{ secrets.SONAR_TOKEN }}
+
 
 
 
