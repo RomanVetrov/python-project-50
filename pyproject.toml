@@ -34,3 +34,6 @@ dev = [
   "ruff",
 ]
 
+[tool.hatch.build.include]
+gendiff = "gendiff"
+

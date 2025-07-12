@@ -1,12 +1,13 @@
+import sys
 import os
 import textwrap
-
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from gendiff import generate_diff_from_files
 
 
 HERE = os.path.dirname(__file__)
-FILE1 = os.path.join(HERE, "../file1.json")
-FILE2 = os.path.join(HERE, "../file2.json")
+FILE1 = os.path.join(HERE, "test_data", "file1.json")
+FILE2 = os.path.join(HERE, "test_data", "file2.json")
 
 EXPECTED = textwrap.dedent(
     """\
