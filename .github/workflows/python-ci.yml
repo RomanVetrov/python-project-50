@@ -4,31 +4,40 @@ on:
   push:
     branches: [ main ]
   pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      # 1) Чекаутим весь репозиторий, отключаем shallow clone
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      # 2) Ставим Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
+      # 3) Устанавливаем dev-зависимости
       - name: Install dependencies
         run: |
           pip install -e .[dev]
 
+      # 4) Запускаем линт и тесты
       - name: Run lint and tests
         run: make check
 
+      # 5) Собираем отчёт покрытия
       - name: Run test coverage
         run: make coverage
 
+      # 6) Анализируем SonarCloud
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarcloud-github-action@v1
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
@@ -36,5 +45,6 @@ jobs:
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
             -Dsonar.python.coverage.reportPaths=coverage.xml
+
 
 
