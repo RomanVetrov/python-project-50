@@ -1,7 +1,10 @@
 import sys
 import os
 import textwrap
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.insert(
+    0,
+    os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+)
 from gendiff import generate_diff_from_files
 
 
