@@ -16,9 +16,9 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install uv & project
+      - name: Install uv, ruff & project
         run: |
-          pip install uv
+          pip install uv ruff
           make install
 
       - name: Run lint and tests
