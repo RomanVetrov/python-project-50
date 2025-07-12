@@ -1,20 +1,28 @@
-.PHONY: gendiff
+.PHONY: install lint test coverage gendiff check
 
-gendiff:
-	uv run gendiff file1.json file2.json
+# 1) Устанавливает venv и все зависимости
+install:
+	python3 -m venv .env
+	. .env/bin/activate && pip install --upgrade pip
+	. .env/bin/activate && pip install -e . pytest pytest-cov ruff
 
-.PHONY: lint
-
+# 2) Линт
 lint:
-	uv run ruff check .
+	.env/bin/ruff check .
 
-.PHONY: install gendiff lint test test-coverage check
-
-
+# 3) Тесты
 test:
-	uv run pytest --maxfail=1 --disable-warnings -q
+	.env/bin/pytest --maxfail=1 --disable-warnings -q
 
-test-coverage:
-	uv run pytest --maxfail=1 --disable-warnings -q --cov=gendiff --cov-report=xml
+# 4) Отчёт покрытия
+coverage:
+	.env/bin/pytest --maxfail=1 --disable-warnings -q --cov=gendiff --cov-report=xml
 
+# 5) CLI-утилита
+gendiff:
+	.env/bin/gendiff file1.json file2.json
+
+# 6) Полная проверка: линт + тесты
 check: lint test
+
+
