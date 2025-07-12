@@ -20,6 +20,11 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
       - name: Install dependencies
         run: pip install -e .[dev]
 
@@ -27,7 +32,8 @@ jobs:
         run: make check
 
       - name: Run test coverage
-        run: make coverage
+        run: |
+          pytest --cov=gendiff --cov-report=xml
 
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@v1
@@ -38,6 +44,7 @@ jobs:
             -Dsonar.python.coverage.reportPaths=coverage.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 
 
 
