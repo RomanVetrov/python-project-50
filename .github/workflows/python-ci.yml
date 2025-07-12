@@ -29,14 +29,13 @@ jobs:
         run: make coverage
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        
+        uses: SonarSource/sonarcloud-github-action@v1
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.python.coverage.reportPaths=coverage.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-       
-        with:
-          args: >
-            -Dsonar.organization=RomanVetrov
-            -Dsonar.projectKey=RomanVetrov_python-project-50
-            -Dsonar.python.coverage.reportPaths=coverage.xml
 
