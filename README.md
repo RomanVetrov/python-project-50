@@ -1,3 +1,7 @@
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=RomanVetrov_python-project-50&metric=coverage)](https://sonarcloud.io/dashboard?id=RomanVetrov_python-project-50)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RomanVetrov_python-project-50&metric=alert_status)](https://sonarcloud.io/dashboard?id=RomanVetrov_python-project-50)
+
 ### Badge
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RomanVetrov_python-project-50&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=RomanVetrov_python-project-50)
 
