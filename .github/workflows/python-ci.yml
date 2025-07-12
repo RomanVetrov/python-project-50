@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Set up JDK 17
+      - name: Set up JDK 17 for SonarCloud
         uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
