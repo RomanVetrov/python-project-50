@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Чекаутим весь репозиторий, отключаем shallow clone
+      # 1) Чекаутим весь репозиторий
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -35,17 +35,14 @@ jobs:
       - name: Run test coverage
         run: make coverage
 
-      # 6) Анализируем SonarCloud (с принудительным старым Scanner для Java 11)
-      - name: SonarQube Scan
-        uses: SonarSource/sonarcloud-github-action@v1
+      # 6) Анализируем SonarCloud при помощи официального action
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
         with:
-          scannerVersion: '4.7.0.2747'
-          args: >
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-            -Dsonar.python.coverage.reportPaths=coverage.xml
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          organization: ${{ secrets.SONAR_ORGANIZATION }}
+          projectKey:    ${{ secrets.SONAR_PROJECT_KEY }}
+          token:         ${{ secrets.SONAR_TOKEN }}
+
 
 
 
