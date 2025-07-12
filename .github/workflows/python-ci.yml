@@ -2,6 +2,7 @@ name: Python CI
 
 on:
   push:
+    branches: [main]
   pull_request:
 
 jobs:
@@ -16,11 +17,12 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install uv & project, then add ruff, pytest, pytest-cov into venv
+      - name: Install dependencies
         run: |
-          pip install uv
-          make install
-          uv run pip install ruff pytest pytest-cov
+          python -m venv .venv
+          . .venv/bin/activate
+          pip install --upgrade pip
+          pip install -e . pytest pytest-cov ruff
 
       - name: Run lint and tests
         run: make check
@@ -28,19 +30,9 @@ jobs:
       - name: Run test coverage
         run: make coverage
 
-      - name: Set up Java 17 for SonarCloud
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarcloud-github-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-            -Dsonar.python.coverage.reportPaths=coverage.xml
+
 
