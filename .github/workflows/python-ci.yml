@@ -33,11 +33,12 @@ jobs:
         run: make coverage
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v1
+        uses: sonarcloud/sonarcloud-github-action@v1
         with:
           organization: ${{ secrets.SONAR_ORGANIZATION }}
-          projectKey:    ${{ secrets.SONAR_PROJECT_KEY }}
-          token:         ${{ secrets.SONAR_TOKEN }}
+          projectKey:   ${{ secrets.SONAR_PROJECT_KEY }}
+          token:        ${{ secrets.SONAR_TOKEN }}
+
 
 
 
