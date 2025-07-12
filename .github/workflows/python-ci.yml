@@ -16,23 +16,27 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install uv & project, then add ruff into venv
+      - name: Install uv & project, then add ruff, pytest, pytest-cov into venv
         run: |
           pip install uv
           make install
           uv run pip install ruff pytest pytest-cov
 
       - name: Run lint and tests
-        run: |
-          make check
+        run: make check
 
       - name: Run test coverage
-        run: |
-          make coverage
+        run: make coverage
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v5
+        
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+       
         with:
-          organization: ${{ secrets.SONAR_ORGANIZATION }}
-          projectKey:   ${{ secrets.SONAR_PROJECT_KEY }}
-          token:        ${{ secrets.SONAR_TOKEN }}
+          args: >
+            -Dsonar.organization=RomanVetrov
+            -Dsonar.projectKey=RomanVetrov_python-project-50
+            -Dsonar.python.coverage.reportPaths=coverage.xml
+
