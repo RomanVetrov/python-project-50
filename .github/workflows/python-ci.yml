@@ -16,10 +16,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install uv, ruff & project
+      - name: Install uv & project, then add ruff into venv
         run: |
-          pip install uv ruff
+          pip install uv
           make install
+          uv run pip install ruff
 
       - name: Run lint and tests
         run: |
