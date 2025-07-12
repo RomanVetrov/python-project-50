@@ -35,23 +35,18 @@ jobs:
       - name: Run test coverage
         run: make coverage
 
-      # 6) Устанавливаем Java 17 для SonarScanner
-      - name: Set up Java 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: '17'
-
-      # 7) Анализируем SonarCloud
+      # 6) Анализируем SonarCloud (с принудительным старым Scanner для Java 11)
       - name: SonarQube Scan
         uses: SonarSource/sonarcloud-github-action@v1
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
+          scannerVersion: '4.7.0.2747'
           args: >
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
             -Dsonar.python.coverage.reportPaths=coverage.xml
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 
 
 
