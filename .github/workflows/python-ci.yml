@@ -50,7 +50,7 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=RomanVetrov_python-project-50
-            -Dsonar.organization=RomanVetrov
+            -Dsonar.organization=romanvetrov
             -Dsonar.python.coverage.reportPaths=coverage.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
