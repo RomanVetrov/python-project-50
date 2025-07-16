@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 
-from .parsers import parse_file
+from gendiff import generate_diff
 
 
 def parse_args():
@@ -14,32 +14,30 @@ def parse_args():
     parser.add_argument(
         "-f",
         "--format",
-        choices=["plain", "json"],
-        default="plain",
+        choices=["stylish"],
+        default="stylish",
         help="set format of output",
     )
     return parser.parse_args()
 
 
-def generate_diff(file1_data, file2_data):
-    diff = []
-    keys = sorted(set(file1_data.keys()).union(file2_data.keys()))
-    for key in keys:
-        if key not in file2_data:
-            diff.append(f"- {key}: {file1_data[key]}")
-        elif key not in file1_data:
-            diff.append(f"+ {key}: {file2_data[key]}")
-        elif file1_data[key] != file2_data[key]:
-            diff.append(f"- {key}: {file1_data[key]}")
-            diff.append(f"+ {key}: {file2_data[key]}")
-    return "\n".join(diff)
+# def generate_diff(file1_data, file2_data):
+#     diff = []
+#     keys = sorted(set(file1_data.keys()).union(file2_data.keys()))
+#     for key in keys:
+#         if key not in file2_data:
+#             diff.append(f"- {key}: {file1_data[key]}")
+#         elif key not in file1_data:
+#             diff.append(f"+ {key}: {file2_data[key]}")
+#         elif file1_data[key] != file2_data[key]:
+#             diff.append(f"- {key}: {file1_data[key]}")
+#             diff.append(f"+ {key}: {file2_data[key]}")
+#     return "\n".join(diff)
 
 
 def main():
     args = parse_args()
-    data1 = parse_file(args.first_file)
-    data2 = parse_file(args.second_file)
-    diff = generate_diff(data1, data2)
+    diff = generate_diff(args.first_file, args.second_file, args.format)
     print(diff)
 
 

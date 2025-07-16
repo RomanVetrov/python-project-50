@@ -9,4 +9,6 @@
 
 [![asciicast](https://asciinema.org/a/dlLNiytpmErGazQDjP4zjwjuF.svg)](https://asciinema.org/a/dlLNiytpmErGazQDjP4zjwjuF)
 
+## Демонстрация работы CLI (шаг: рекурсивный stylish)
 
+[![asciicast](https://asciinema.org/a/lcNWAzRC2JGjzpdHaQmtFjxXT.svg)](https://asciinema.org/a/lcNWAzRC2JGjzpdHaQmtFjxXT)
