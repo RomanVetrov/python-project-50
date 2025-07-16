@@ -1,13 +1,11 @@
-import json
+from .parsers import parse_file
 
 from .cli import generate_diff
 
 
 def generate_diff_from_files(file1_path, file2_path):
-    with open(file1_path, "r") as f1:
-        data1 = json.load(f1)
-    with open(file2_path, "r") as f2:
-        data2 = json.load(f2)
+    data1 = parse_file(file1_path)
+    data2 = parse_file(file2_path)
     return generate_diff(data1, data2)
 
 

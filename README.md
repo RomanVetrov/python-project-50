@@ -4,8 +4,9 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RomanVetrov_python-project-50&metric=alert_status)](https://sonarcloud.io/dashboard?id=RomanVetrov_python-project-50)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=RomanVetrov_python-project-50&metric=coverage)](https://sonarcloud.io/dashboard?id=RomanVetrov_python-project-50)
 
-## gendiff Demo
 
-[![asciicast](https://asciinema.org/a/CotAfmlhV3SnbClz6AR4EuEEU.svg)](https://asciinema.org/a/CotAfmlhV3SnbClz6AR4EuEEU)
+## Демонстрация работы CLI
+
+[![asciicast](https://asciinema.org/a/dlLNiytpmErGazQDjP4zjwjuF.svg)](https://asciinema.org/a/dlLNiytpmErGazQDjP4zjwjuF)
 
 

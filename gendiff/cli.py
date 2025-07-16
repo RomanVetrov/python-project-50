@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+from .parsers import parse_file
 import argparse
 import json
 
@@ -21,11 +21,6 @@ def parse_args():
     return parser.parse_args()
 
 
-def read_file(file_path):
-    with open(file_path, "r") as file:
-        return json.load(file)
-
-
 def generate_diff(file1_data, file2_data):
     diff = []
     keys = sorted(set(file1_data.keys()).union(file2_data.keys()))
@@ -42,8 +37,8 @@ def generate_diff(file1_data, file2_data):
 
 def main():
     args = parse_args()
-    data1 = read_file(args.first_file)
-    data2 = read_file(args.second_file)
+    data1 = parse_file(args.first_file)
+    data2 = parse_file(args.second_file)
     diff = generate_diff(data1, data2)
     print(diff)
 
