@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-from .parsers import parse_file
 import argparse
-import json
+
+from .parsers import parse_file
 
 
 def parse_args():

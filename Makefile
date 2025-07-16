@@ -1,4 +1,4 @@
-.PHONY: install lint test coverage gendiff check
+.PHONY: install lint lint-fix test coverage gendiff check
 
 # 1) Устанавливает dev-зависимости
 install:
@@ -23,5 +23,6 @@ gendiff:
 # 6) Полная проверка: линт + тесты
 check: lint test
 
-
+lint-fix:
+	ruff check . --fix
 

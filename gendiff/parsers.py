@@ -1,6 +1,8 @@
 import json
-import yaml
 import os
+
+import yaml
+
 
 def parse_file(filepath):
     ext = os.path.splitext(filepath)[1].lower()

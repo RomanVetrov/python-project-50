@@ -28,13 +28,16 @@ def test_generate_diff_plain():
     result = generate_diff_from_files(FILE1, FILE2)
     assert result == EXPECTED
 
+
 def test_generate_diff_yaml():
     result = generate_diff_from_files(FILE1_YAML, FILE2_YAML)
     assert result == EXPECTED
 
+
 def test_generate_diff_json_yaml():
     result = generate_diff_from_files(FILE1, FILE2_YAML)
     assert result == EXPECTED
+
 
 def test_generate_diff_yaml_json():
     result = generate_diff_from_files(FILE1_YAML, FILE2)

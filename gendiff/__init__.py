@@ -1,6 +1,5 @@
-from .parsers import parse_file
-
 from .cli import generate_diff
+from .parsers import parse_file
 
 
 def generate_diff_from_files(file1_path, file2_path):
