@@ -1,9 +1,3 @@
-SEPARATOR = " "
-ADD = '  + '
-DEL = '  - '
-NONE = '    '
-
-
 def to_str(value, depth):
     if isinstance(value, dict):
         lines = []
@@ -23,8 +17,9 @@ def to_str(value, depth):
 
 def render_stylish(diff, depth=1):
     lines = []
+    # Для знаков: всегда 4 пробела * (depth-1), но 2 из них для знака (+/-)
     base_indent = ' ' * ((depth - 1) * 4)
-    sign_indent = ' ' * (((depth - 1) * 4) - 2)
+    sign_indent = ' ' * ((depth - 1) * 4 - 2) if (depth - 1) * 4 - 2 > 0 else ''
     for node in diff:
         key = node["key"]
         node_type = node["type"]
@@ -33,27 +28,22 @@ def render_stylish(diff, depth=1):
             lines.append(f"{base_indent}{key}: {children}")
         elif node_type == "added":
             lines.append(
-                f"{sign_indent}+ {key}: "
-                f"{to_str(node['value'], depth + 1)}"
+                f"{sign_indent}+ {key}: {to_str(node['value'], depth + 1)}"
             )
         elif node_type == "removed":
             lines.append(
-                f"{sign_indent}- {key}: "
-                f"{to_str(node['value'], depth + 1)}"
+                f"{sign_indent}- {key}: {to_str(node['value'], depth + 1)}"
             )
         elif node_type == "changed":
             lines.append(
-                f"{sign_indent}- {key}: "
-                f"{to_str(node['old_value'], depth + 1)}"
+                f"{sign_indent}- {key}: {to_str(node['old_value'], depth + 1)}"
             )
             lines.append(
-                f"{sign_indent}+ {key}: "
-                f"{to_str(node['new_value'], depth + 1)}"
+                f"{sign_indent}+ {key}: {to_str(node['new_value'], depth + 1)}"
             )
         elif node_type == "unchanged":
             lines.append(
-                f"{base_indent}{key}: "
-                f"{to_str(node['value'], depth + 1)}"
+                f"{base_indent}{key}: {to_str(node['value'], depth + 1)}"
             )
     closing_indent = ' ' * ((depth - 1) * 4)
     return '{\n' + '\n'.join(lines) + f'\n{closing_indent}}}'
