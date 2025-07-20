@@ -16,3 +16,7 @@
 ## Демонстрация работы (plain и stylish)
 
 [![asciicast](https://asciinema.org/a/MNBpiqb8SF2z8MN0tN8dM1IwL.svg)](https://asciinema.org/a/MNBpiqb8SF2z8MN0tN8dM1IwL)
+
+## Демонстрация полной работы
+
+[![asciinema](https://asciinema.org/a/hx9MkiYlUaiYoj9QjlRkXG0ol.svg)](https://asciinema.org/a/hx9MkiYlUaiYoj9QjlRkXG0ol)

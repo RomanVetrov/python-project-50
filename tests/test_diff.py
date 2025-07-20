@@ -1,5 +1,6 @@
 import os
 from gendiff import generate_diff
+import json
 
 HERE = os.path.dirname(__file__)
 FILE1 = os.path.join(HERE, "test_data", "file1.json")
@@ -122,3 +123,15 @@ def test_generate_diff_plain_nested():
     assert generate_diff(NESTED1, NESTED2, "plain").strip() == (
     EXPECTED_PLAIN_NESTED
     )
+
+
+def test_generate_diff_json_format():
+    result = generate_diff(FILE1, FILE2, "json")
+    data = json.loads(result)
+    assert isinstance(data, list) or isinstance(data, dict)
+
+
+def test_generate_diff_json_nested():
+    result = generate_diff(NESTED1, NESTED2, "json")
+    data = json.loads(result)
+    assert isinstance(data, list) or isinstance(data, dict)
