@@ -12,3 +12,7 @@
 ## Демонстрация работы CLI (шаг: рекурсивный stylish)
 
 [![asciicast](https://asciinema.org/a/lcNWAzRC2JGjzpdHaQmtFjxXT.svg)](https://asciinema.org/a/lcNWAzRC2JGjzpdHaQmtFjxXT)
+
+## Демонстрация работы (plain и stylish)
+
+[![asciicast](https://asciinema.org/a/MNBpiqb8SF2z8MN0tN8dM1IwL.svg)](https://asciinema.org/a/MNBpiqb8SF2z8MN0tN8dM1IwL)
