@@ -18,7 +18,7 @@ def to_str(value, depth):
 def render_stylish(diff, depth=1):
     lines = []
     indent = " " * ((depth - 1) * 4)
-    sign_indent = " " * (((depth - 1) * 4) - 2) if depth > 1 else ""
+    sign_indent = " " * (indent.__len__() - 2) if depth > 1 else ""
     for node in diff:
         key = node["key"]
         node_type = node["type"]
@@ -50,4 +50,3 @@ def render_stylish(diff, depth=1):
 
 def format_stylish(diff):
     return render_stylish(diff, 1)
-
