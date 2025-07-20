@@ -50,3 +50,4 @@ def render_stylish(diff, depth=1):
 
 def format_stylish(diff):
     return render_stylish(diff, 1)
+
