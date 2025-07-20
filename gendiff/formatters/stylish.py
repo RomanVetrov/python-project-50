@@ -1,3 +1,9 @@
+SEPARATOR = " "
+ADD = '  + '
+DEL = '  - '
+NONE = '    '
+
+
 def to_str(value, depth):
     if isinstance(value, dict):
         lines = []
