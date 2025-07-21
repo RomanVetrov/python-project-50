@@ -1,11 +1,12 @@
 def to_str(value, depth):
     if isinstance(value, dict):
-        lines = []
-        indent = " " * (depth * 4)
-        for k, v in value.items():
-            lines.append(f"{indent}{k}: {to_str(v, depth + 1)}")
-        closing_indent = " " * ((depth - 1) * 4)
-        return "{\n" + "\n".join(lines) + f"\n{closing_indent}}}"
+        indent = ' ' * (depth * 4)
+        lines = [
+            f"{indent}{k}: {to_str(v, depth + 1)}"
+            for k, v in value.items()
+        ]
+        closing = ' ' * ((depth - 1) * 4)
+        return '{\n' + '\n'.join(lines) + f'\n{closing}}}'
     if value is True:
         return "true"
     if value is False:
@@ -16,41 +17,31 @@ def to_str(value, depth):
 
 
 def render_stylish(diff, depth=1):
+    ind = ' ' * ((depth - 1) * 4)
+    s_ind = ' ' * (max(0, (depth - 1) * 4 - 2))
     lines = []
-    base_indent = ' ' * ((depth - 1) * 4)
-    sign_indent = ' ' * (((depth - 1) * 4) - 2)
     for node in diff:
-        key = node["key"]
-        node_type = node["type"]
-        if node_type == "nested":
-            children = render_stylish(node["children"], depth + 1)
-            lines.append(f"{base_indent}{key}: {children}")
-        elif node_type == "added":
-            lines.append(
-                f"{sign_indent}+ {key}: "
-                f"{to_str(node['value'], depth + 1)}"
-            )
-        elif node_type == "removed":
-            lines.append(
-                f"{sign_indent}- {key}: "
-                f"{to_str(node['value'], depth + 1)}"
-            )
-        elif node_type == "changed":
-            lines.append(
-                f"{sign_indent}- {key}: "
-                f"{to_str(node['old_value'], depth + 1)}"
-            )
-            lines.append(
-                f"{sign_indent}+ {key}: "
-                f"{to_str(node['new_value'], depth + 1)}"
-            )
-        elif node_type == "unchanged":
-            lines.append(
-                f"{base_indent}{key}: "
-                f"{to_str(node['value'], depth + 1)}"
-            )
-    closing_indent = ' ' * ((depth - 1) * 4)
-    return '{\n' + '\n'.join(lines) + f'\n{closing_indent}}}'
+        key = node['key']
+        t = node['type']
+        if t == 'nested':
+            child = render_stylish(node['children'], depth + 1)
+            lines.append(f"{ind}{key}: {child}")
+        elif t == 'added':
+            value = to_str(node['value'], depth + 1)
+            lines.append(f"{s_ind}+ {key}: {value}")
+        elif t == 'removed':
+            value = to_str(node['value'], depth + 1)
+            lines.append(f"{s_ind}- {key}: {value}")
+        elif t == 'changed':
+            old_value = to_str(node['old_value'], depth + 1)
+            new_value = to_str(node['new_value'], depth + 1)
+            lines.append(f"{s_ind}- {key}: {old_value}")
+            lines.append(f"{s_ind}+ {key}: {new_value}")
+        else:
+            value = to_str(node['value'], depth + 1)
+            lines.append(f"{ind}{key}: {value}")
+    close = ' ' * ((depth - 1) * 4)
+    return '{\n' + '\n'.join(lines) + f'\n{close}}}'
 
 
 def format_stylish(diff):
