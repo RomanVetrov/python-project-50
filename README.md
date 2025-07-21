@@ -7,6 +7,10 @@
 
 ## Демонстрация работы CLI
 
+[![asciicast](https://asciinema.org/a/cUshoqvzf3eB7iaYoZzhQO6eK.svg)](https://asciinema.org/a/cUshoqvzf3eB7iaYoZzhQO6eK)
+
+<!-- ## Демонстрация работы CLI
+
 [![asciicast](https://asciinema.org/a/dlLNiytpmErGazQDjP4zjwjuF.svg)](https://asciinema.org/a/dlLNiytpmErGazQDjP4zjwjuF)
 
 ## Демонстрация работы CLI (шаг: рекурсивный stylish)
@@ -19,4 +23,4 @@
 
 ## Демонстрация полной работы
 
-[![asciinema](https://asciinema.org/a/hx9MkiYlUaiYoj9QjlRkXG0ol.svg)](https://asciinema.org/a/hx9MkiYlUaiYoj9QjlRkXG0ol)
+[![asciinema](https://asciinema.org/a/hx9MkiYlUaiYoj9QjlRkXG0ol.svg)](https://asciinema.org/a/hx9MkiYlUaiYoj9QjlRkXG0ol) -->
