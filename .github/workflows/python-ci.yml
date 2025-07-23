@@ -52,6 +52,8 @@ jobs:
             -Dsonar.projectKey=RomanVetrov_python-project-50
             -Dsonar.organization=romanvetrov
             -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.sources=gendiff
+            -Dsonar.tests=tests
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
