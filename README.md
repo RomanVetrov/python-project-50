@@ -24,7 +24,7 @@ Supports nested structures, several output formats, and is fully CI-ready.
 ## Installation
 
 ```bash
-git clone https://github.com/RomanVetrov/python-project-50.git
+git clone git@github.com:RomanVetrov/python-project-50.git
 cd python-project-50
 
 # With pip (default)
