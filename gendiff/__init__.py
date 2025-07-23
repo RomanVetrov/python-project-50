@@ -1,8 +1,8 @@
-from .diff_builder import build_diff
 from .formatters.json import format_json
 from .formatters.plain import format_plain
 from .formatters.stylish import format_stylish
-from .parsers import parse_file
+from .scripts.diff_builder import build_diff
+from .scripts.parsers import parse_file
 
 
 def generate_diff(file1_path, file2_path, format_name="stylish"):
