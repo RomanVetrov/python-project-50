@@ -96,7 +96,3 @@ MIT License
 
 - Telegram: [@ZZyngZZ](https://t.me/ZZyngZZ)
 - Email: romanvikernes@gmail.com
-
-## Credits
-
-Project developed as part of the [Hexlet Python Course](https://ru.hexlet.io/programs/python)
